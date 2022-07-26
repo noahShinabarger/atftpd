@@ -1,7 +1,6 @@
 #build
 FROM debian:buster-slim as builder
 RUN apt-get update && \
-    apt-get install libc6 && \
     apt-get install -y curl wget && \
     apt-get install -y make gcc-4.9 libc6-dbg && \
     apt-get install -y netcat && \
@@ -13,7 +12,7 @@ RUN echo "deb [trusted=yes] http://dk.archive.ubuntu.com/ubuntu/ xenial main" >>
 RUN echo "deb [trusted=yes] http://dk.archive.ubuntu.com/ubuntu/ xenial universe" >> /etc/apt/sources.list
 RUN apt update
 RUN apt install -y gcc-4.9
-RUN cd atftp ; ./configure CC='/usr/bin/gcc-4.9'
+RUN cd atftp ; ./configure --enable-debug CC='/usr/bin/gcc-4.9'
 RUN cd atftp ; make
 RUN cd atftp ; make install
 
