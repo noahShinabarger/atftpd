@@ -18,5 +18,8 @@ RUN cd atftp ; make install
 
 #package
 FROM debian:buster-slim
+RUN echo "deb [trusted=yes] http://dk.archive.ubuntu.com/ubuntu/ xenial main" >> /etc/apt/sources.list
+RUN echo "deb [trusted=yes] http://dk.archive.ubuntu.com/ubuntu/ xenial universe" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y libc6-dbg
 COPY --from=builder /usr/local/bin/atftp /usr/local/bin/atftp
 COPY --from=builder /usr/local/sbin/atftpd /usr/local/sbin/atftpd

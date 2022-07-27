@@ -12,7 +12,7 @@ target: test-atftpd
 image: ghcr.io/noahshinabarger/atftpd
 
 # Turns on extra test case processing (completing a run will take longer)
-advanced_triage: false
+advanced_triage: true
 
 # List of commands used to test the target
 cmds:
@@ -33,7 +33,7 @@ cmds:
     ## for IPv4. For IPv6, use "[::1]". By leaving as "localhost", Mayhem will
     ## attempt to autodetect the one used by the target.
       url: udp://localhost:55555 # protocol, host and port to analyze
-      client: False           # target is a client-side program
+      client: false           # target is a client-side program
       timeout: 2.0               # max seconds for sending data
 
     ## Max test case length (in bytes) to be taken into account. Test cases over
@@ -41,3 +41,4 @@ cmds:
     ## limit as it can severely affect your fuzzer performance.
     # max_length: 8192
 
+    env: {}
